@@ -18,16 +18,27 @@ DESCRIPTION
 	(pp Expr)
 		Print/prettyprint a value to full depth.
 
-	(c File [Options])
-		Compile and load an LFE file. Assumes default
-		extension .lfe.
-
 	(l Module ...)
 		Load modules.
 
 	(m Module ...)
 		Print out module information, if no modules are given
 		then print information about all modules.
+
+	(pid x y z)
+		Create a pid from x, y, z.
+
+	(i)
+		Print information about the currently running
+		processes in the system.
+
+	(regs)
+		Print information about the currently running
+		processes in the system.
+
+	(c File [Options])
+		Compile and load an LFE file. Assumes default
+		extension .lfe.
 
 	(ec File [Options])
 		Compile and load an Erlang file.

@@ -21,8 +21,8 @@
 -module(lfe_eval).
 
 -export([expr/1,expr/2,gexpr/1,gexpr/2,apply/2,apply/3,
-     body/1,body/2,guard/1,guard/2,
-     make_letrec_env/2,add_expr_func/4,match/3,match_when/4]).
+         body/1,body/2,guard/1,guard/2,match/3,match_when/4,
+         make_letrec_env/2,add_lexical_func/4,add_dynamic_func/4]).
 
 %% Deprecated exports.
 -export([eval/1,eval/2,eval_list/2]).
@@ -429,12 +429,16 @@ make_letrec_env(Fbs0, Env) ->
 extend_letrec_env(Lete0, Fbs0, Env0) ->
     {Lete0,Env0}.
 
-%% add_expr_func(Name, Arity, Def, Env) -> Env.
+%% add_lexical_func(Name, Arity, Def, Env) -> Env.
+%% add_dynamic_func(Name, Arity, Def, Env) -> Env.
 %%  Add a function definition in the correct format to the
 %%  environment.
 
-add_expr_func(Name, Ar, Def, Env) ->
+add_lexical_func(Name, Ar, Def, Env) ->
     add_fbinding(Name, Ar, {lexical_expr,Def,Env}, Env).
+
+add_dynamic_func(Name, Ar, Def, Env) ->
+    add_fbinding(Name, Ar, {dynamic_expr,Def}, Env).
 
 %% eval_apply(Function, Args, Env) -> Value.
 %%  This is used to evaluate interpreted functions. Macros are
